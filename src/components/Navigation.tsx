@@ -36,7 +36,7 @@ const Navigation = (props: Props) => {
     const urlParts = useSelector(urlSegments, shallowEqual)
 
     return (
-        <Paper elevation={1} className={classes.container}>
+        <Paper elevation={2} className={classes.container}>
             <NavigationItem onClick={() => dispatch(push('/explore'))} active={urlParts[0] === 'explore' } icon={<ExploreIcon />}/>
             <NavigationItem onClick={() => dispatch(push('/map'))} active={urlParts[0] === 'map' || urlParts[0] === 'dive-spot' } icon={<MapIcon />}/>
         </Paper>

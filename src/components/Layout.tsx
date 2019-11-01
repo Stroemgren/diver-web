@@ -13,7 +13,7 @@ const Layout = (props: Props) => {
     return (
         <div className={classes.container}>
             <Navigation activeIndex={1} />
-            <div style={{ display: 'flex', flexGrow: 1, maxHeight: '100%' }}>
+            <div style={{ display: 'flex', flexGrow: 1 }}>
                 {children}
             </div>
         </div>
@@ -30,6 +30,6 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column-reverse',
         [theme.breakpoints.up('sm')]: {
             flexDirection: 'row',
-        },
+        }
     }
 }))
