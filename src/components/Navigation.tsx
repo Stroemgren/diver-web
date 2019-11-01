@@ -59,8 +59,8 @@ const useStyles = makeStyles(theme => ({
     },
     item: {
         cursor: 'pointer',
-        height: '80px',
-        width: '56px',
+        height: '56px',
+        width: '48px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -70,8 +70,13 @@ const useStyles = makeStyles(theme => ({
             width: '80px'
         },
         '& .MuiSvgIcon-root': {
-            fontSize: '2.1875rem',
-            color: 'rgba(0, 0, 0, 0.35)'
+            fontSize: '1.875rem',
+            color: 'rgba(0, 0, 0, 0.35)',
+            [theme.breakpoints.up('sm')]: {
+                fontSize: '2.1875rem',
+                height: '80px',
+                width: '56px'
+            }
         },
         '&:hover': {
             '& .MuiSvgIcon-root': {
