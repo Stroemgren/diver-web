@@ -106,7 +106,7 @@ const Spot = () => {
 
 export default Spot
 
-const mapHeight = '325px'
+const mapHeight = 250
 
 const useStyles = makeStyles({
     container: {
@@ -117,12 +117,12 @@ const useStyles = makeStyles({
     },
     backdrop: {
         width: '100%',
-        height: mapHeight,
+        height: `${mapHeight}px`,
         top: 0,
         overflow: 'hidden'
     },
     mapFix: {
-        height: '375px',
+        height: `${mapHeight + 50}px`,
         marginTop: '-25px'
     },
     contentContainer: {
@@ -137,7 +137,7 @@ const useStyles = makeStyles({
     content: {
         backgroundColor: '#fff',
         width: '100%',
-        marginTop: mapHeight,
+        marginTop: `${mapHeight}px`,
         padding: '0 32px 24px 32px'
     }
 })
