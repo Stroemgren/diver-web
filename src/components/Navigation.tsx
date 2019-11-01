@@ -49,18 +49,26 @@ const useStyles = makeStyles(theme => ({
     container: {
         backgroundColor: '#fff',
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
         justifyContent: 'center',
-        zIndex: 200
+        zIndex: 200,
+        borderRadius: 0,
+        [theme.breakpoints.up('sm')]: {
+            flexDirection: 'column'
+        }
     },
     item: {
         cursor: 'pointer',
-        height: '56px',
+        height: '80px',
+        width: '56px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        width: '80px',
         boxSizing: 'border-box',
+        [theme.breakpoints.up('sm')]: {
+            height: '56px',
+            width: '80px'
+        },
         '& .MuiSvgIcon-root': {
             fontSize: '2.1875rem',
             color: 'rgba(0, 0, 0, 0.35)'
@@ -72,7 +80,12 @@ const useStyles = makeStyles(theme => ({
         }
     },
     itemActive: {
-        borderLeft: `3px solid ${theme.palette.primary.main}`,
+        borderBottom: `3px solid ${theme.palette.primary.main}`,
+        borderLeft: `none`,
+        [theme.breakpoints.up('sm')]: {
+            borderBottom: `none`,
+            borderLeft: `3px solid ${theme.palette.primary.main}`
+        },
         '& .MuiSvgIcon-root': {
             marginLeft: '-3px',
             color: theme.palette.primary.main
