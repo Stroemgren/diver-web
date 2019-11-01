@@ -22,8 +22,9 @@ export default Popup
 
 const useStyles = makeStyles({
     container: {
+        textAlign: 'center',
         width: '250px',
-        height: '80px',
+        height: '100px',
         borderRadius: '5px',
         padding: '8px',
         transform: 'translate(-50%, -50%)',

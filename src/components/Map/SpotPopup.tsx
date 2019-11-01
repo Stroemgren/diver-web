@@ -16,9 +16,9 @@ const SpotPopup = (props: Props) => {
 
     return (
         <Popup lat={lat} lng={lng}>
-            <Typography variant="h6" style={{fontSize: '1rem'}}>{location.name}</Typography>
+            <Typography variant="overline" style={{ fontSize: '0.65rem' }}>{location.locationType} dive</Typography>
+            <Typography variant="h6" gutterBottom style={{fontSize: '1rem', marginTop: '-8px'}}>{location.name}</Typography>
             <Button 
-                variant="contained" 
                 size="small" 
                 color="primary"
                 onClick={onViewClick}
