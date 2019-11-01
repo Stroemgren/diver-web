@@ -19,7 +19,7 @@ module.exports = {
         // path in the server
         path: "/var/www/diver-web",
         // post-deploy action
-        "post-deploy": "npm install && npm run build && npm install -g serve && serve -s build -l 3000",
+        "post-deploy": "npm install && serve -s build -l 3000",
       },
     }
   }
