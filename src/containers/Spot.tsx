@@ -138,6 +138,6 @@ const useStyles = makeStyles({
         backgroundColor: '#fff',
         width: '100%',
         marginTop: mapHeight,
-        padding: '0 32px'
+        padding: '0 32px 24px 32px'
     }
 })
