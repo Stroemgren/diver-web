@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles, Typography, Button } from '@material-ui/core'
+import { Typography, Button } from '@material-ui/core'
 import Popup from './Popup'
 import { Location } from 'diver-models'
 
@@ -11,7 +11,6 @@ type Props = {
 }
 
 const SpotPopup = (props: Props) => {
-    const classes = useStyles(props)
     const { lat, lng, location, onViewClick } = props
 
     return (
@@ -30,9 +29,3 @@ const SpotPopup = (props: Props) => {
 }
 
 export default SpotPopup
-
-const useStyles = makeStyles({
-    container: {
-        backgroundColor: '#fff'
-    }
-})

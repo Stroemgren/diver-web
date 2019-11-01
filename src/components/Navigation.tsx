@@ -31,7 +31,6 @@ type Props = {
 
 const Navigation = (props: Props) => {
     const classes = useStyles()
-    const { activeIndex } = props
     const dispatch = useDispatch()
     const urlParts = useSelector(urlSegments, shallowEqual)
 
