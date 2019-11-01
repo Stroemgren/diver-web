@@ -10,7 +10,7 @@ export function fetchLocations(): Thunk {
 	return (dispatch: any, getState: () => StoreState) => {
 		http({
 			method: 'get',
-			url: 'http://0.0.0.0:3000/location'
+			url: 'http://157.245.3.84:3000/location'
 		})
 		.then((response: AxiosResponse) => {
 			dispatch(loadLocations(response.data));
