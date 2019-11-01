@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         height: '100%',
         width: '100%',
-        flexDirection: 'column-reverse',
+        flexDirection: 'column',
         [theme.breakpoints.up('sm')]: {
             flexDirection: 'row',
         }
