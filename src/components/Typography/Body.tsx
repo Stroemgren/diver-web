@@ -11,7 +11,7 @@ const Body = (props: Props) => {
     const { children, ...rest } = props
 
     return (
-        <Typography variant="body2" className={classes.text} { ...rest }>{children}</Typography>
+        <Typography variant="body1" className={classes.text} { ...rest }>{children}</Typography>
     )
 }
 
@@ -19,6 +19,6 @@ export default Body
 
 const useStyles = makeStyles({
     text: {
-        fontSize: '0.825rem'
+       
     }
 })

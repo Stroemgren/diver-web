@@ -5,7 +5,7 @@ type Props = {
 }
 
 const MaxWidth = (props: Props) => (
-    <div style={{ maxWidth: '1024px', margin: '0 auto' }}>{ props.children }</div>
+    <div style={{ maxWidth: '800px', margin: '0 auto' }}>{ props.children }</div>
 )
 
 export default MaxWidth

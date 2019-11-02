@@ -20,7 +20,7 @@ const Attribute = (props: { text: string, icon: string }) => {
                 title="User Profile"
                 size={1}
             />
-            <Typography className={classes.text} variant="body2">{props.text}</Typography>
+            <Typography variant="body1">{props.text}</Typography>
         </div>
     )
 }
@@ -30,35 +30,30 @@ const Attributes = (props: Props) => {
     const { location } = props
 
     return (
-        <Paper elevation={1} className={classes.container}>
+        <div className={classes.container}>
             <Attribute icon={mdiSkullOutline} text={location.entryType + ' Entry'} />
             <Attribute icon={mdiSpaOutline} text={location.locationType} />
             <Attribute icon={mdiSwapVertical} text={`${location.minDepth}-${location.maxDepth}m`} />
-        </Paper>
+        </div>
     )
 }
 
 export default Attributes
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     container: {
         display: 'flex',
         flexDirection: 'row',
-        marginBottom: '24px',
-        padding: '8px 0'
+        marginBottom: theme.spacing(2)
     },
     item: {
         display: 'flex',
         flexGrow: 1,
-        flexDirection: 'column',
-        alignItems: 'center'
+        flexDirection: 'row',
+        alignItems: 'flex-start'
     },
     icon: {
-        marginBottom: '4px',
+        marginRight: theme.spacing(1),
         fill: '#555'
-    },
-    text: {
-        fontSize: '0.725rem',
-        color: '#555'
     }
-})
+}))

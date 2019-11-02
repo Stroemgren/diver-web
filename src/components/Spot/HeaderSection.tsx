@@ -11,7 +11,7 @@ const HeaderSection = (props: Props) => {
     const { title, place } = props
 
     return (
-        <div style={{padding: '16px 0'}}>
+        <div style={{padding: '24px 0'}}>
             <Header>{title}</Header>
             <Place>{place}</Place>
         </div>

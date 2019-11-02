@@ -30,17 +30,11 @@ const Spot = (props: Props) => {
                     place={place}
                 />
             </div>
-            <Grid container spacing={4}>
-                <Grid item sm={6} style={{width: '100%'}}>
-                    <Subtitle paragraph>Description</Subtitle>
-                    <Attributes location={location} />
-                    <Description>{ props.location.description }</Description>
-                </Grid>
-                <Grid item sm={6} style={{width: '100%'}}>
-                    <Subtitle paragraph>Weather Forecast</Subtitle>
-                    <Weather coordinate={props.location.coordinate} />
-                </Grid>
-            </Grid>
+            <Subtitle paragraph>About this spot</Subtitle>
+            <Attributes location={location} />
+            <Description>{ props.location.description }</Description>
+            <Subtitle paragraph>Weather Forecast</Subtitle>
+            <Weather coordinate={props.location.coordinate} />
 
             
             <Subtitle paragraph>Photos</Subtitle>
