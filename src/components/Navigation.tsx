@@ -89,7 +89,7 @@ const useStyles = makeStyles(theme => ({
             borderLeft: `3px solid ${theme.palette.primary.main}`
         },
         '& .MuiSvgIcon-root': {
-            margin: '0 0 -3px 0',
+            margin: '-3px 0 0 0',
             color: theme.palette.primary.main,
             [theme.breakpoints.up('sm')]: {
                 marginLeft: '0 0 0 -3px',
