@@ -6,6 +6,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { theme } from './theme'
 import Map from './containers/Map'
+import Center from './containers/Center'
 import Spot from './containers/Spot'
 import Explore from './containers/Explore'
 
@@ -19,6 +20,7 @@ const App: React.FC = () => {
                     <CssBaseline />
                     <Switch>
                         <Route path="/dive-spot/:id" render={() => <Spot />} />
+                        <Route path="/center/:id" render={() => <Center />} />
                         <Route path="/map" render={() => <Map />} />
                         <Route path="/explore" render={() => <Explore />} />
                         <Route path="/" render={() => <Redirect to="/map" />} />

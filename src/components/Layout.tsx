@@ -13,7 +13,7 @@ const Layout = (props: Props) => {
     return (
         <div className={classes.container}>
             <Navigation activeIndex={1} />
-            <div style={{ display: 'flex', flexGrow: 1, height: '100%' }}>
+            <div style={{ display: 'flex', flexGrow: 1, height: '100%', position: 'relative' }}>
                 {children}
             </div>
         </div>

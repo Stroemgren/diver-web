@@ -14,7 +14,7 @@ const AvatarMap = (props: Props) => {
 
     return (
         <div className={classes.container}>
-            <div style={{ width: '120px', height: '120px', marginTop: '-20px', marginLeft: '-20px' }}> 
+            <div style={{ width: '190px', height: '190px', marginTop: '-20px', marginLeft: '-20px' }}> 
                 <GoogleMap
                     center={coordinate}
                 >
@@ -29,9 +29,8 @@ export default AvatarMap
 
 const useStyles = makeStyles({
     container: {
-        width: '80px',
-        height: '80px',
-        borderRadius: '50%',
+        width: '150px',
+        height: '150px',
         overflow: 'hidden'
     }
 })

@@ -16,6 +16,9 @@ import { makeStyles, Paper } from '@material-ui/core'
 import debounce from 'lodash/debounce'
 import MaxWidth from '../components/Layout/MaxWidth'
 import HeaderSection from '../components/Spot/HeaderSection'
+import BackdropLayout from '../components/Layout/BackdropLayout'
+
+const mapHeight = 250
 
 const Spot = () => {
     const classes = useStyles()
@@ -25,21 +28,7 @@ const Spot = () => {
     const selectedLocation = useSelector(selectedSpot, shallowEqual)
     const mapCenter = useSelector(getCenter, shallowEqual)
     const mapZoom = useSelector(getZoom, shallowEqual)
-    const scrollEl = useRef(null as any)
-    const scrollingEl = useRef(null as any)
     const [ showSticky, setShowSticky ] = useState(false)
-
-    useEffect(
-        () => {
-            const handleScroll = () => {
-                const position = scrollingEl.current.getBoundingClientRect()
-                setShowSticky(position.top < 1)
-            }
-            scrollEl.current.addEventListener("scroll", debounce(handleScroll))
-            return () => scrollEl.current.removeEventListener("scroll", debounce(handleScroll))
-        },
-        [debounce] 
-      );
 
     useEffect(() => {
         dispatch(fetchLocations())
@@ -61,80 +50,53 @@ const Spot = () => {
 
     return (
         <Layout>
-            <div className={classes.container}>
-                <Paper style={{position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100, display: showSticky ? 'block' : 'none', borderRadius: '0', padding: '0 32px'}}>
-                    <MaxWidth>
-                        <HeaderSection
-                            title={selectedLocation ? selectedLocation.name : ''}
-                            place={selectedLocation ? selectedLocation.country.name : ''}
-                        />
-                    </MaxWidth>
-                </Paper>
-                <div className={classes.backdrop}>
+            <Paper style={{position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100, display: showSticky ? 'block' : 'none', borderRadius: '0', padding: '0 32px'}}>
+                <MaxWidth>
+                    <HeaderSection
+                        title={selectedLocation ? selectedLocation.name : ''}
+                        place={selectedLocation ? selectedLocation.country.name : ''}
+                    />
+                </MaxWidth>
+            </Paper>
+            <BackdropLayout
+                onBackdropHidden={() => setShowSticky(true)}
+                onBackdropVisible={() => setShowSticky(false)}
+                backdropHeight={mapHeight}
+                backdrop={
                     <div className={classes.mapFix}>
-                    <GoogleMap
-                        center={mapCenter}
-                        zoom={mapZoom}
-                    >
-                        {locations.map(l => (
-                            <Marker active={selectedLocation !== null && l.id === selectedLocation.id} key={l.id} lat={l.coordinate.latitude} lng={l.coordinate.longitude} onClick={() => handleSpotClick(l)} />
-                        ))}
-                        {centers.map(c => (
-                            <Marker key={c.id} lat={c.coordinate.latitude} lng={c.coordinate.longitude} color="secondary" />
-                        ))}
-                    </GoogleMap>
+                        <GoogleMap
+                            center={mapCenter}
+                            zoom={mapZoom}
+                        >
+                            {locations.map(l => (
+                                <Marker active={selectedLocation !== null && l.id === selectedLocation.id} key={l.id} lat={l.coordinate.latitude} lng={l.coordinate.longitude} onClick={() => handleSpotClick(l)} />
+                            ))}
+                            {centers.map(c => (
+                                <Marker key={c.id} lat={c.coordinate.latitude} lng={c.coordinate.longitude} color="secondary" />
+                            ))}
+                        </GoogleMap>
                     </div>
-                </div>
-                <div className={classes.contentContainer} ref={scrollEl}>               
-                    <div className={classes.content} ref={scrollingEl}>
-                        <MaxWidth>
-                            {selectedLocation &&
-                                <SpotComp.default
-                                    location={selectedLocation}
-                                />
-                            }
-                        </MaxWidth>
-                    </div>
-                </div>
-            </div>
+                }
+            >
+                <MaxWidth>
+                    {selectedLocation &&
+                        <SpotComp.default
+                            location={selectedLocation}
+                            nearBySpots={locations}
+                            nearByCenters={[]}
+                        />
+                    }
+                </MaxWidth>
+            </BackdropLayout>
         </Layout>
     )
 }
 
 export default Spot
 
-const mapHeight = 250
-
 const useStyles = makeStyles({
-    container: {
-        position: 'relative',
-        height: '100%',
-        maxHeight: '100%',
-        width: '100%',
-    },
-    backdrop: {
-        width: '100%',
-        height: `${mapHeight}px`,
-        top: 0,
-        overflow: 'hidden'
-    },
     mapFix: {
         height: `${mapHeight + 50}px`,
         marginTop: '-25px'
-    },
-    contentContainer: {
-        position: 'absolute',
-        height: '100%',
-        maxHeight: '100%',
-        width: '100%',
-        zIndex: 75,
-        overflowY: 'scroll',
-        top: 0,
-    },
-    content: {
-        backgroundColor: '#fff',
-        width: '100%',
-        marginTop: `${mapHeight}px`,
-        padding: '0 32px 24px 32px'
     }
 })

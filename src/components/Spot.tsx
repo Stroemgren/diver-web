@@ -9,7 +9,7 @@ import image2 from '../photos/image2.jpg'
 import image3 from '../photos/image3.jpg'
 import image4 from '../photos/image4.jpg'
 import image5 from '../photos/image5.jpg'
-import { Location } from 'diver-models'
+import { Location, Center } from 'diver-models'
 import SpotCard from './SpotCard'
 import { Grid } from '@material-ui/core'
 import HeaderSection from './Spot/HeaderSection'
@@ -17,10 +17,12 @@ import Section from './Section'
 
 type Props = {
     location: Location
+    nearBySpots: Location[]
+    nearByCenters: Center[]
 }
 
 const Spot = (props: Props) => {
-    const { location } = props
+    const { location, nearBySpots } = props
     const place = !location.city ? location.country.name : `${location.city.name}, ${location.country.name}`
     
     return (
@@ -46,15 +48,14 @@ const Spot = (props: Props) => {
                 <Subtitle paragraph>Photos</Subtitle>
                 <Photos images={[image1, image2, image3, image4, image5]} />
             </Section>
-            
-            <Section>
-                <Subtitle paragraph>Other locations nearby</Subtitle>
-                <SpotCard />
-            </Section>
 
             <Section>
-                <Subtitle paragraph>Nearby centers</Subtitle>
-                <SpotCard />
+                <Subtitle paragraph>Other locations nearby</Subtitle>
+                <div style={{height: '250px', overflowX: 'scroll', display: 'flex', flexDirection: 'row'}}>
+                    {nearBySpots.map(s =>
+                        <SpotCard spot={s} />
+                    )}
+                </div>
             </Section>
         </div>
     )

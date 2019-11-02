@@ -3,7 +3,7 @@ import { useDispatch, shallowEqual, useSelector } from 'react-redux'
 import { fetchLocations } from '../store/spots/thunks'
 import { push } from 'connected-react-router'
 import { selectedSpot, allLocations } from '../store/spots/selectors'
-import { Location } from 'diver-models'
+import { Location, Center } from 'diver-models'
 import GoogleMap from '../components/Map/GoogleMap'
 import Marker from '../components/Map/Marker'
 import { getCenter, getZoom } from '../store/map/selectors'
@@ -13,6 +13,7 @@ import { allCenters } from '../store/center/selectors'
 import { fetchCenters } from '../store/center/thunks'
 import { makeStyles } from '@material-ui/core'
 import SpotPopup from '../components/Map/SpotPopup'
+import CenterPopup from '../components/Map/CenterPopup'
 
 type Props = {
 
@@ -26,7 +27,7 @@ const Map = (props: Props) => {
     const selectedLocation = useSelector(selectedSpot, shallowEqual)
     const mapCenter = useSelector(getCenter, shallowEqual)
     const mapZoom = useSelector(getZoom, shallowEqual)
-    const [ activeLocation, setActiveLocation ] = useState(null as Location | null)
+    const [ activeLocation, setActiveLocation ] = useState(null as Location | Center | null)
 
     useEffect(() => {
         dispatch(fetchLocations())
@@ -41,10 +42,15 @@ const Map = (props: Props) => {
     }, [selectedLocation, dispatch])
 
     const handleSpotClick = (location: Location) => {
-        // dispatch(push(`/dive-spot/${location.id}`))
         dispatch(setCenter(location.coordinate))
         dispatch(setZoom(10))
         setActiveLocation(location)
+    }
+
+    const handleCenterClick = (center: Center) => {
+        dispatch(setCenter(center.coordinate))
+        dispatch(setZoom(10))
+        setActiveLocation(center)
     }
 
     return (
@@ -54,17 +60,38 @@ const Map = (props: Props) => {
                 zoom={mapZoom}
             >
                 {locations.map(l => (
-                    <Marker active={selectedLocation !== null && l.id === selectedLocation.id} key={l.id} lat={l.coordinate.latitude} lng={l.coordinate.longitude} onClick={() => handleSpotClick(l)} />
+                    <Marker 
+                        active={selectedLocation !== null && l.id === selectedLocation.id} 
+                        key={l.id} 
+                        lat={l.coordinate.latitude} 
+                        lng={l.coordinate.longitude} 
+                        onClick={() => handleSpotClick(l)} 
+                    />
                 ))}
                 {centers.map(c => (
-                    <Marker key={c.id} lat={c.coordinate.latitude} lng={c.coordinate.longitude} color="secondary" />
+                    <Marker
+                        active={selectedLocation !== null && c.id === selectedLocation.id} 
+                        key={c.id} 
+                        lat={c.coordinate.latitude} 
+                        lng={c.coordinate.longitude}
+                        onClick={() => handleCenterClick(c)}  
+                        color="secondary" 
+                    />
                 ))}
-                {activeLocation &&
+                {activeLocation && isSpot(activeLocation) &&
                     <SpotPopup 
                         location={activeLocation} 
                         lat={activeLocation.coordinate.latitude} 
                         lng={activeLocation.coordinate.longitude}
                         onViewClick={() => dispatch(push(`/dive-spot/${activeLocation.id}`))}
+                    />
+                }
+                {activeLocation && isCenter(activeLocation) &&
+                    <CenterPopup 
+                        center={activeLocation} 
+                        lat={activeLocation.coordinate.latitude} 
+                        lng={activeLocation.coordinate.longitude}
+                        onViewClick={() => dispatch(push(`/center/${activeLocation.id}`))}
                     />
                 }
             </GoogleMap>
@@ -73,6 +100,9 @@ const Map = (props: Props) => {
 }
 
 export default Map
+
+const isSpot = (t: any): t is Location => (t as Location).id.substr(0, 2) === 'lo'
+const isCenter = (t: any): t is Center => (t as Center).id.substr(0, 2) === 'ce'
 
 const mapHeight = '325px'
 
