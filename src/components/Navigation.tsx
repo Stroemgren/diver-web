@@ -72,9 +72,7 @@ const useStyles = makeStyles(theme => ({
             fontSize: '1.875rem',
             color: 'rgba(0, 0, 0, 0.35)',
             [theme.breakpoints.up('sm')]: {
-                fontSize: '2.1875rem',
-                height: '80px',
-                width: '56px'
+                fontSize: '2.1875rem'
             }
         },
         '&:hover': {
@@ -91,8 +89,11 @@ const useStyles = makeStyles(theme => ({
             borderLeft: `3px solid ${theme.palette.primary.main}`
         },
         '& .MuiSvgIcon-root': {
-            marginLeft: '-3px',
-            color: theme.palette.primary.main
+            margin: '0 0 -3px 0',
+            color: theme.palette.primary.main,
+            [theme.breakpoints.up('sm')]: {
+                marginLeft: '0 0 0 -3px',
+            }
         },
         '&:hover': {
             '& .MuiSvgIcon-root': {

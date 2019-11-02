@@ -19,12 +19,12 @@ const Description = (props: Props) => {
     return (
         <>
             {children !== '' &&
-                <div className={classes.container}>
+                <>
                     <div className={clsx(classes.textContainer, !open && classes.textContainerClosed )}>
                         <Body>{children}</Body>
                     </div>
                     <Button onClick={handleClick} size="small" color="primary" className={classes.button}>{open ? 'View less' : 'View more'}</Button>
-                </div>
+                </>
             }
         </>
     )
@@ -33,9 +33,6 @@ const Description = (props: Props) => {
 export default Description
 
 const useStyles = makeStyles({
-    container: {
-        marginBottom: '24px'
-    },
     textContainer: {
         marginBottom: '8px',
         position: 'relative',

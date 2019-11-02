@@ -13,6 +13,7 @@ import { Location } from 'diver-models'
 import SpotCard from './SpotCard'
 import { Grid } from '@material-ui/core'
 import HeaderSection from './Spot/HeaderSection'
+import Section from './Section'
 
 type Props = {
     location: Location
@@ -30,21 +31,31 @@ const Spot = (props: Props) => {
                     place={place}
                 />
             </div>
-            <Subtitle paragraph>About this spot</Subtitle>
-            <Attributes location={location} />
-            <Description>{ props.location.description }</Description>
-            <Subtitle paragraph>Weather Forecast</Subtitle>
-            <Weather coordinate={props.location.coordinate} />
+            <Section>
+                <Subtitle paragraph>About this spot</Subtitle>
+                <Attributes location={location} />
+                <Description>{ props.location.description }</Description>
+            </Section>
 
-            
-            <Subtitle paragraph>Photos</Subtitle>
-            <Photos images={[image1, image2, image3, image4, image5]} />
-            
-            <Subtitle paragraph>Nearby Locations</Subtitle>
-            <SpotCard />
+            <Section>
+                <Subtitle paragraph>Weather Forecast</Subtitle>
+                <Weather coordinate={props.location.coordinate} />
+            </Section>
 
-            <Subtitle paragraph>Nearby Centers</Subtitle>
-            <SpotCard />
+            <Section>
+                <Subtitle paragraph>Photos</Subtitle>
+                <Photos images={[image1, image2, image3, image4, image5]} />
+            </Section>
+            
+            <Section>
+                <Subtitle paragraph>Nearby Locations</Subtitle>
+                <SpotCard />
+            </Section>
+
+            <Section>
+                <Subtitle paragraph>Nearby Centers</Subtitle>
+                <SpotCard />
+            </Section>
         </div>
     )
 }
