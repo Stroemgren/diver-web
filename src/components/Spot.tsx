@@ -38,7 +38,7 @@ const Spot = (props: Props) => {
             </Section>
 
             <Section>
-                <Subtitle paragraph>Weather Forecast</Subtitle>
+                <Subtitle paragraph>Weather forecast</Subtitle>
                 <Weather coordinate={props.location.coordinate} />
             </Section>
 
@@ -48,12 +48,12 @@ const Spot = (props: Props) => {
             </Section>
             
             <Section>
-                <Subtitle paragraph>Nearby Locations</Subtitle>
+                <Subtitle paragraph>Other locations nearby</Subtitle>
                 <SpotCard />
             </Section>
 
             <Section>
-                <Subtitle paragraph>Nearby Centers</Subtitle>
+                <Subtitle paragraph>Nearby centers</Subtitle>
                 <SpotCard />
             </Section>
         </div>

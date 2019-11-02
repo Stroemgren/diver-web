@@ -1,8 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Icon from '@mdi/react'
-import { mdiSkullOutline, mdiSpaOutline, mdiSwapVertical } from '@mdi/js'
-import { Typography, Paper } from '@material-ui/core'
+import { mdiSkullOutline, mdiSpaOutline, mdiSwapVertical, mdiIsland, mdiFerry } from '@mdi/js'
+import { Typography } from '@material-ui/core'
 import { Location } from 'diver-models'
 
 type Props = {
@@ -28,10 +28,11 @@ const Attribute = (props: { text: string, icon: string }) => {
 const Attributes = (props: Props) => {
     const classes = useStyles(props)
     const { location } = props
+    const entryIcon = location.entryType === 'Shore' ? mdiIsland : mdiFerry
 
     return (
         <div className={classes.container}>
-            <Attribute icon={mdiSkullOutline} text={location.entryType + ' Entry'} />
+            <Attribute icon={entryIcon} text={'Entry from ' + location.entryType.toLowerCase()} />
             <Attribute icon={mdiSpaOutline} text={location.locationType} />
             <Attribute icon={mdiSwapVertical} text={`${location.minDepth}-${location.maxDepth}m`} />
         </div>
@@ -43,14 +44,18 @@ export default Attributes
 const useStyles = makeStyles(theme => ({
     container: {
         display: 'flex',
-        flexDirection: 'row',
-        marginBottom: theme.spacing(2)
+        flexDirection: 'column',
+        //marginBottom: theme.spacing(2),
+        [theme.breakpoints.up('sm')]: {
+            flexDirection: 'row',
+        }
     },
     item: {
         display: 'flex',
         flexGrow: 1,
         flexDirection: 'row',
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
+        marginBottom: theme.spacing(2)
     },
     icon: {
         marginRight: theme.spacing(1),

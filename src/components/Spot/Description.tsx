@@ -32,9 +32,9 @@ const Description = (props: Props) => {
 
 export default Description
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     textContainer: {
-        marginBottom: '8px',
+        marginBottom: theme.spacing(1),
         position: 'relative',
         height: 'auto',
         overflow: 'hidden'
@@ -48,4 +48,4 @@ const useStyles = makeStyles({
         display: 'block',
         textTransform: 'none'
     }
-})
+}))

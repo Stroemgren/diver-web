@@ -21,6 +21,6 @@ const useStyles = makeStyles(theme => ({
     container: {
         marginBottom: theme.spacing(3),
         paddingBottom: theme.spacing(3),
-        borderBottom: `1px solid ${theme.palette.grey[200]}`
+        borderBottom: `1px solid ${theme.palette.grey[300]}`
     }
 }))

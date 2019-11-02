@@ -34,15 +34,15 @@ const WeatherDay = (props: Props) => {
                     className={classes.attributeIcon}
                     path={mdiWeatherWindy}
                     title="Wind"
-                    size={0.6}
+                    size={0.7}
                 />
-                <p className={classes.attribute}>{props.wind}<span className={classes.attributePostfix}>m/s</span></p>
+                <p className={classes.attribute}>{props.wind}<span className={classes.attributePostfix}> m/s</span></p>
             </Segment>
             <Segment width={20} align="center">
                 <Icon 
                     path={iconMap[props.icon].icon}
                     style={{ fill: iconMap[props.icon].color }}
-                    size={0.7}
+                    size={1}
                 />
             </Segment>
             <Segment width={9} align="left">
@@ -76,7 +76,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center'
     },
     title: {
-        fontSize: '0.875rem',
+        fontSize: '1rem',
         margin: 0
     },
     attributeIcon: {
@@ -85,7 +85,7 @@ const useStyles = makeStyles(theme => ({
     },
     attribute: {
         color: '#666',
-        fontSize: '0.775rem',
+        fontSize: '1rem',
         margin: '8px 0'
     },
     attributePostfix: {

@@ -14,7 +14,7 @@ const Place = (props: Props) => {
     return (
         <div className={classes.container} style={{ marginBottom: paragraph ? '16px' : 0 }}>
             <PlaceIcon className={classes.icon} />
-            <Typography variant="body1" className={classes.text} { ...rest }>{children}</Typography>
+            <Typography variant="subtitle2" className={classes.text} { ...rest }>{children}</Typography>
         </div>
     )
 }
@@ -34,7 +34,6 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.primary.main
     },
     text: {
-        fontSize: '0.825rem',
         color: theme.palette.primary.main
     }
 }))
