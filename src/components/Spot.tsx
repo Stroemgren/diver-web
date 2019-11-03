@@ -14,6 +14,7 @@ import SpotCard from './SpotCard'
 import { Grid } from '@material-ui/core'
 import HeaderSection from './Spot/HeaderSection'
 import Section from './Section'
+import HorizontalSlider from './HorizontalSlider'
 
 type Props = {
     location: Location
@@ -23,16 +24,9 @@ type Props = {
 
 const Spot = (props: Props) => {
     const { location, nearBySpots } = props
-    const place = !location.city ? location.country.name : `${location.city.name}, ${location.country.name}`
     
     return (
         <div>
-            <div style={{ marginBottom: '24px' }}>
-                <HeaderSection 
-                    title={location.name}
-                    place={place}
-                />
-            </div>
             <Section>
                 <Subtitle paragraph>About this spot</Subtitle>
                 <Attributes location={location} />
@@ -51,11 +45,11 @@ const Spot = (props: Props) => {
 
             <Section>
                 <Subtitle paragraph>Other locations nearby</Subtitle>
-                <div style={{height: '250px', overflowX: 'scroll', display: 'flex', flexDirection: 'row'}}>
+                <HorizontalSlider>
                     {nearBySpots.map(s =>
-                        <SpotCard spot={s} />
+                        <SpotCard key={s.id} spot={s} />
                     )}
-                </div>
+                </HorizontalSlider>
             </Section>
         </div>
     )

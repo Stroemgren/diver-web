@@ -11,7 +11,7 @@ export function fetchWeatherForecast(coordinate: Coordinate): Thunk {
 	return (dispatch: any, getState: () => StoreState) => {
 		http({
 			method: 'get',
-			url: `http://0.0.0.0:3000/weather?latitude=${coordinate.latitude}&longitude=${coordinate.longitude}`
+			url: `http://157.245.3.84:3000/weather/five-day-forecast?latitude=${coordinate.latitude}&longitude=${coordinate.longitude}`
 		})
 		.then((response: AxiosResponse) => {
 			dispatch(loadWeatherForecast(response.data));

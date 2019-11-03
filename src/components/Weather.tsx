@@ -2,14 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { StoreState } from '../store'
 import { fetchWeatherForecast } from '../store/weather/thunks'
-import { IWeatherForecast } from '../models/IWeatherForecast'
-import { Coordinate } from 'diver-models'
+import { Coordinate, FiveDayForecast } from 'diver-models'
 import { weatherForCoordinate } from '../store/weather/selectors'
 import WeatherDay from './WeatherDay'
 
 type Props = {
     coordinate: Coordinate
-    weatherForecast: IWeatherForecast | null
+    weatherForecast: FiveDayForecast| null
     fetchWeatherForecast: typeof fetchWeatherForecast
 }
 
@@ -33,14 +32,14 @@ class Weather extends React.Component<Props, {}> {
     }
 
     render() {
+        const forecast = this.props.weatherForecast
+
         return (
             <>
                 <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '24px' }}>
-                    <WeatherDay title="Sun" icon="clearSky" wind={3.6} minTemp={14} maxTemp={23} />
-                    <WeatherDay title="Mon" icon="showerRain" wind={3.2} minTemp={13} maxTemp={23} />
-                    <WeatherDay title="Tue" icon="fewClouds" wind={3.4} minTemp={10} maxTemp={18} />
-                    <WeatherDay title="Wed" icon="scatteredClouds" wind={2.1} minTemp={10} maxTemp={19} />
-                    <WeatherDay title="Thu" icon="scatteredClouds" wind={1.8} minTemp={17} maxTemp={26} />
+                    {forecast && forecast.days.map(d =>
+                        <WeatherDay key={d.weekday} title={d.weekday} icon={d.icon} wind={Math.round(d.windSpeed * 10) / 10} minTemp={Math.round(d.minTemp)} maxTemp={Math.round(d.maxTemp)} />  
+                    )}
                 </div>
             </>
         )

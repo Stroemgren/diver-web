@@ -53,6 +53,7 @@ const Spot = () => {
             <Paper style={{position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100, display: showSticky ? 'block' : 'none', borderRadius: '0', padding: '0 32px'}}>
                 <MaxWidth>
                     <HeaderSection
+                        onBackClick={() => dispatch(push('/map'))}
                         title={selectedLocation ? selectedLocation.name : ''}
                         place={selectedLocation ? selectedLocation.country.name : ''}
                     />
@@ -80,11 +81,18 @@ const Spot = () => {
             >
                 <MaxWidth>
                     {selectedLocation &&
-                        <SpotComp.default
-                            location={selectedLocation}
-                            nearBySpots={locations}
-                            nearByCenters={[]}
-                        />
+                        <>
+                            <HeaderSection 
+                                onBackClick={() => dispatch(push('/map'))}
+                                title={selectedLocation.name}
+                                place={selectedLocation ? selectedLocation.country.name : ''}
+                            />
+                            <SpotComp.default
+                                location={selectedLocation}
+                                nearBySpots={locations}
+                                nearByCenters={[]}
+                            />
+                        </>
                     }
                 </MaxWidth>
             </BackdropLayout>

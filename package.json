@@ -10,7 +10,7 @@
     "@n8tb1t/use-scroll-position": "^1.0.40",
     "@rehooks/window-scroll-position": "^1.0.1",
     "@types/jest": "^24.0.21",
-    "@types/node": "^12.12.3",
+    "@types/node": "^12.12.5",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.3",
     "axios": "^0.19.0",
@@ -54,7 +54,7 @@
     ]
   },
   "devDependencies": {
-    "@types/google-map-react": "^1.1.0",
+    "@types/google-map-react": "^1.1.1",
     "@types/history": "^4.7.3",
     "@types/lodash": "^4.14.144",
     "@types/react-redux": "^7.1.5",

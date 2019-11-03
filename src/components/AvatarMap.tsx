@@ -16,6 +16,7 @@ const AvatarMap = (props: Props) => {
         <div className={classes.container}>
             <div style={{ width: '190px', height: '190px', marginTop: '-20px', marginLeft: '-20px' }}> 
                 <GoogleMap
+                    disableInteraction
                     center={coordinate}
                 >
                     <Marker lat={coordinate.latitude} lng={coordinate.longitude} />

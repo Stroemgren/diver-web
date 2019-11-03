@@ -4,7 +4,8 @@ import GoogleMapReact from 'google-map-react'
 import { mapStyle } from '../../mapStyle'
 
 const defaultProps = {
-    zoom: 8
+    zoom: 8,
+    disableInteraction: false
 }
 
 type Props = {
@@ -13,7 +14,16 @@ type Props = {
 } & Partial<typeof defaultProps>
 
 const GoogleMap = (props: Props) => {
-    const { center, children, zoom } = { ...defaultProps, ...props }
+    const { center, children, zoom, disableInteraction } = { ...defaultProps, ...props }
+
+    let options: { [key: string]: any } = {
+        styles: mapStyle,
+        disableDefaultUI: true
+    }
+
+    if (disableInteraction) {
+        options = { ...options, zoomControl: false, gestureHandling: 'none' }
+    }
 
     return (
         <GoogleMapReact
@@ -21,10 +31,7 @@ const GoogleMap = (props: Props) => {
             center={{lat: center.latitude, lng: center.longitude}}
             defaultZoom={6}
             zoom={zoom}
-            options={{
-                styles: mapStyle,
-                disableDefaultUI: true
-            }}
+            options={options}
         >
             {children}
         </GoogleMapReact>

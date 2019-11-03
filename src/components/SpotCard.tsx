@@ -15,7 +15,7 @@ const SpotCard = (props: Props) => {
         <Paper className={classes.container}>
             <AvatarMap coordinate={spot.coordinate} />
             <div style={{padding: '8px'}}>
-                <Typography variant="overline" style={{lineHeight: 1, fontSize: '0.6rem'}}>{spot.entryType} dive</Typography>
+                <Typography variant="overline" style={{lineHeight: 1, fontSize: '0.6rem'}}>{spot.locationType} dive</Typography>
                 <Typography variant="subtitle2" style={{lineHeight: 1.25}}>{spot.name}</Typography>
             </div>
         </Paper>
@@ -26,8 +26,6 @@ export default SpotCard
 
 const useStyles = makeStyles({
     container: {
-        display: 'flex',
-        flexDirection: 'column',
         width: '150px',
         height: '230px',
         marginRight: '16px'

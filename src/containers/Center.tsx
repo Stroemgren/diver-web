@@ -26,7 +26,6 @@ const Center = () => {
     const centers = useSelector(allCenters, shallowEqual)
     const mapCenter = useSelector(getCenter, shallowEqual)
     const mapZoom = useSelector(getZoom, shallowEqual)
-    console.log(thisCenter)
 
     return (
         <Layout>
@@ -54,6 +53,7 @@ const Center = () => {
                     <MaxWidth>
                         <div style={{ marginBottom: '24px' }}>
                             <HeaderSection 
+                                onBackClick={() => {}}
                                 title={thisCenter.name}
                                 place={thisCenter.address.country.name}
                             />
