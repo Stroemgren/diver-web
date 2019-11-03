@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Layout from '../components/Layout'
 import BackdropLayout from '../components/Layout/BackdropLayout'
 import GoogleMap from '../components/Map/GoogleMap'
-import { useSelector, shallowEqual } from 'react-redux'
+import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import { allLocations } from '../store/spots/selectors'
 import { allCenters, selectedCenter } from '../store/center/selectors'
 import { getCenter, getZoom } from '../store/map/selectors'
@@ -15,11 +15,13 @@ import { Typography } from '@material-ui/core'
 import Subtitle from '../components/Typography/Subtitle'
 import Section from '../components/Section'
 import Body from '../components/Typography/Body'
+import { push } from 'connected-react-router'
 
 const mapHeight = 250
 
 const Center = () => {
     const classes = useStyles()
+    const dispatch = useDispatch()
     const [ showSticky, setShowSticky ] = useState(false)
     const thisCenter = useSelector(selectedCenter, shallowEqual)
     const locations = useSelector(allLocations, shallowEqual)
@@ -53,7 +55,7 @@ const Center = () => {
                     <MaxWidth>
                         <div style={{ marginBottom: '24px' }}>
                             <HeaderSection 
-                                onBackClick={() => {}}
+                                onBackClick={() => dispatch(push('/map'))}
                                 title={thisCenter.name}
                                 place={thisCenter.address.country.name}
                             />

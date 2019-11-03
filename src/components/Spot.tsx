@@ -11,10 +11,13 @@ import image4 from '../photos/image4.jpg'
 import image5 from '../photos/image5.jpg'
 import { Location, Center } from 'diver-models'
 import SpotCard from './SpotCard'
+import CenterCard from './CenterCard'
 import { Grid } from '@material-ui/core'
 import HeaderSection from './Spot/HeaderSection'
 import Section from './Section'
 import HorizontalSlider from './HorizontalSlider'
+import { useDispatch } from 'react-redux'
+import { push } from 'connected-react-router'
 
 type Props = {
     location: Location
@@ -23,7 +26,8 @@ type Props = {
 }
 
 const Spot = (props: Props) => {
-    const { location, nearBySpots } = props
+    const { location, nearBySpots, nearByCenters } = props
+    const dispatch = useDispatch()
     
     return (
         <div>
@@ -47,7 +51,16 @@ const Spot = (props: Props) => {
                 <Subtitle paragraph>Other locations nearby</Subtitle>
                 <HorizontalSlider>
                     {nearBySpots.map(s =>
-                        <SpotCard key={s.id} spot={s} />
+                        <SpotCard onClick={(spot) => dispatch(push(`/dive-spot/${spot.id}`))} key={s.id} spot={s} />
+                    )}
+                </HorizontalSlider>
+            </Section>
+
+            <Section>
+                <Subtitle paragraph>Nearby centers</Subtitle>
+                <HorizontalSlider>
+                    {nearByCenters.map(c =>
+                        <CenterCard onClick={(center) => dispatch(push(`/center/${center.id}`))} key={c.id} center={c} />
                     )}
                 </HorizontalSlider>
             </Section>

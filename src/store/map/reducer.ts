@@ -5,7 +5,7 @@ import {
 } from './types'
 
 const defaultState = {
-	center: { latitude: 56, longitude: 12 } as Coordinate,
+	center: { latitude: 55.097150000000, longitude: 11.041020000000 } as Coordinate,
 	zoom: 8
 }
 

@@ -13,7 +13,6 @@ import Layout from '../components/Layout'
 import { allCenters } from '../store/center/selectors'
 import { fetchCenters } from '../store/center/thunks'
 import { makeStyles, Paper } from '@material-ui/core'
-import debounce from 'lodash/debounce'
 import MaxWidth from '../components/Layout/MaxWidth'
 import HeaderSection from '../components/Spot/HeaderSection'
 import BackdropLayout from '../components/Layout/BackdropLayout'
@@ -90,7 +89,7 @@ const Spot = () => {
                             <SpotComp.default
                                 location={selectedLocation}
                                 nearBySpots={locations}
-                                nearByCenters={[]}
+                                nearByCenters={centers}
                             />
                         </>
                     }
