@@ -63,7 +63,6 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        boxSizing: 'border-box',
         [theme.breakpoints.up('sm')]: {
             height: '56px',
             width: '80px'
@@ -82,19 +81,8 @@ const useStyles = makeStyles(theme => ({
         }
     },
     itemActive: {
-        borderBottom: `3px solid ${theme.palette.primary.main}`,
-        borderLeft: `none`,
-        boxSizing: 'border-box',
-        [theme.breakpoints.up('sm')]: {
-            borderBottom: `none`,
-            borderLeft: `3px solid ${theme.palette.primary.main}`
-        },
         '& .MuiSvgIcon-root': {
-            margin: '0 0 -3px 0',
             color: theme.palette.primary.main,
-            [theme.breakpoints.up('sm')]: {
-                marginLeft: '0 0 0 -3px',
-            }
         },
         '&:hover': {
             '& .MuiSvgIcon-root': {
