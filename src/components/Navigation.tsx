@@ -84,6 +84,7 @@ const useStyles = makeStyles(theme => ({
     itemActive: {
         borderBottom: `3px solid ${theme.palette.primary.main}`,
         borderLeft: `none`,
+        boxSizing: 'border-box',
         [theme.breakpoints.up('sm')]: {
             borderBottom: `none`,
             borderLeft: `3px solid ${theme.palette.primary.main}`
