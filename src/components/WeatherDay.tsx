@@ -17,7 +17,7 @@ const Segment = (props: { width: number, children: ReactNode, align: 'left' | 'c
     const justify = { left: 'flex-start', center: 'space-around', right: 'flex-end' }[props.align]
 
     return (
-        <div style={{ width: `${props.width}%`, justifyContent: justify }} className={classes.segment}>{props.children}</div>
+        <div style={{ width: `${props.width}%`, justifyContent: justify, flexWrap: 'nowrap'  }} className={classes.segment}>{props.children}</div>
     )
 }
 
@@ -29,7 +29,7 @@ const WeatherDay = (props: Props) => {
             <Segment width={13} align="left">
                 <p className={classes.title}>{props.title}</p>
             </Segment>
-            <Segment width={18} align="center">
+            <Segment width={22} align="center">
                 <Icon
                     className={classes.attributeIcon}
                     path={mdiWeatherWindy}
@@ -45,17 +45,17 @@ const WeatherDay = (props: Props) => {
                     size={1}
                 />
             </Segment>
-            <Segment width={9} align="left">
+            <Segment width={10} align="left">
                 <p className={classes.attribute}>{props.minTemp}°C</p>
             </Segment>
-            <Segment width={31} align="center">
+            <Segment width={25} align="center">
                 <div className={classes.tempGraphContainer}>
                     <div className={classes.tempGraphBaseline} />
                     <div className={classes.tempMinLine} style={{ width: tempToWidth(props.minTemp) }} />
                     <div className={classes.tempMaxLine} style={{ width: tempToWidth(props.maxTemp) }} />
                 </div>
             </Segment>
-            <Segment width={9} align="right">
+            <Segment width={10} align="right">
                 <p className={classes.attribute} style={{ color: '#222' }}>{props.maxTemp}°C</p>
             </Segment>
         </div>
