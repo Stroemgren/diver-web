@@ -20,7 +20,7 @@
     "diver-models": "git+ssh://git@github.com/Stroemgren/diver-models.git",
     "google-map-react": "^1.1.5",
     "history": "^4.10.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-google-maps": "^9.4.5",
